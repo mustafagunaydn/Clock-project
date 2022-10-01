@@ -1,17 +1,23 @@
-console.log(new Date().getHours());
-console.log(new Date().getMinutes());
-console.log(new Date().getSeconds());
+const container = document.querySelector(".container");
+// console.log(container);
+let amPm;
+setInterval(() => {
+  let hour = new Date().getHours();
+  const minutes = new Date().getMinutes();
+  let seconds = new Date().getSeconds();
 
+  if (seconds < 10) {
+    seconds = "0" + seconds;
+  }
+  if (hour < 13) {
+    amPm = "AM";
+  } else {
+    amPm = "PM";
+    hour = hour - 12;
+    hour < 10 ? (hour = "0" + hour) : hour;
+  }
 
-// const time = `${hour} : ${minutes} :${seconds}`;
-// console.log(time);
+  const time = `${hour} : ${minutes} :${seconds} ${amPm}`;
 
-setInterval(()=>{
-    const hour = new Date().getHours();
-    const minutes = new Date().getMinutes();
-    const seconds = new Date().getSeconds();
-    const time = `${hour} : ${minutes} : ${seconds}`;
-    // console.log(time); 
-    const container=document.querySelector(".container");
-    container.innerHTML=`<p>${time}</p>`;
-},1000);
+  container.innerHTML = `<p>${time}</p> `;
+}, 1000);
